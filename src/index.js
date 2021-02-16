@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
@@ -96,6 +96,52 @@ ReactDOM.render(
   document.getElementById('root7')
 );
 
+//COUNTER APP
+class Counter extends React.Component{
+  state = {
+    counter:0
+  }
+  componentDidMount() {
+    this.setState({counter: 42});
+  }
 
+  componentDidUpdate() {
+  alert("Number of clicks: " + this.state.counter);
+}
 
+  increment = () =>{
+    this.setState({
+      counter: this.state.counter + 1});
+  }
+  render(){
+    return <div>
+    <p>{this.state.counter}</p>
+    <button onClick={this.increment}>Increment</button>
+    </div>;
+  }
+}
+ReactDOM.render(
+  <Counter />,
+  document.getElementById('Counter')
+);
+
+//COUNTER APP USING functional Components AND hooks
+function Counter1() {
+  const [counter, setCounter] = useState(0);
+
+  function increment() {
+    setCounter(counter+1);
+  }
+
+  return <div>
+  <p>{counter}</p>
+  <button onClick={increment}>
+    Increment
+  </button>
+  </div>;
+} 
+ReactDOM.render(
+  <Counter1 />,
+  document.getElementById('Counter1')
+);
 //setInterval(show, 1000);
